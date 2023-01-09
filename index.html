@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- head -->
+  <head>
+    <link rel="icon" href="public/favicon.ico" />
+    <link rel="manifest" href="public/manifest.json" />
+    <link rel="stylesheet" href="public/styles/animation.css" />
+    <link rel="stylesheet" href="public/styles/bootstrap.css" />
+    <meta charset="utf-8" />
+    <meta name="api-key" content="0.0.1" />
+    <meta name="description" content="SecurID" />
+    <meta name="theme-color" content="#FF8552" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="version" content="0.0.1" />
+    <meta http-equiv="expires" content="0" />
+    <title>SecurID</title>
+  </head>
+
+  <!-- body -->
+  <body>
+    <div class="container-fluid h-100">
+      <div class="row h-100">
+
+        <!-- column -->
+        <div class="col-12">
+          <div class="align-items-center d-flex flex-column h-100 justify-content-center">
+
+            <!-- card -->
+            <div
+              class="align-items-center card d-flex flex-column justify-content-center p-5"
+              style="width: 400px"
+            >
+
+              <!-- card image -->
+              <img
+                alt="SecurID"
+                src="public/images/SecurID_Long.png"
+                style="height: 50px; width: 240px"
+              />
+
+              <!-- card body -->
+              <div class="card-body">
+
+                <!-- card title -->
+                <h5 class="card-title fw-light text-center">Loading Animation Demo</h5>
+
+                <!-- form -->
+                <div class="mt-5" id="form-root">
+
+                  <!-- email -->
+                  <div class="form-group my-3">
+                    <input type="email" class="form-control" placeholder="User ID">
+                  </div>
+
+                  <!-- password -->
+                  <div class="form-group my-3">
+                    <input type="password" class="form-control" placeholder="Password">
+                  </div>
+
+                  <!-- buttons -->
+                  <div class="d-flex justify-content-around mt-5">
+                    <button
+                      class="btn btn-primary"
+                      style="width: 150px;"
+                      onclick="handleClick()"
+                    >
+                      Sign In
+                    </button>
+                    <button
+                      class="btn btn-sm btn-white text-primary"
+                      style="width: 150px;"
+                      type="button"
+                    >
+                      Forgot Password
+                    </button>
+                  </div><!-- flex box -->
+
+                  <!-- instructions -->
+                  <h2
+                    class="card-header"
+                    id="instructions"
+                    style="position: absolute; left: 100px; top: 200px;"
+                  >
+                    Click "Sign In"
+                  </h2>
+
+                </div><!-- form -->
+
+                <!-- animation 1 -->
+                <div id="animation-frame-1" class="animation-frame" hidden>
+                  <div id="animation-root">
+                    <div id="person"></div>
+                    <div id="lock1"></div>
+                    <div id="lock2"></div>
+                    <div id="lock3"></div>
+                    <div id="channel1" class="channel"></div>
+                    <div id="channel2" class="channel"></div>
+                    <div id="channel3" class="channel"></div>
+                    <div id="building"></div>
+                    <div id="cloud"></div>
+                    <div id="safe"></div>
+                    <div id="channel4" class="channel"></div>
+                    <div id="channel5" class="channel"></div>
+                    <div id="channel6" class="channel"></div>
+                  </div>
+                </div>
+
+                <!-- animation 2 -->
+                <div id="animation-frame-2" class="animation-frame" hidden>
+                  <canvas id="canvas" style="height: 100%; width: 100%;"></canvas>
+                </div>
+
+                <!-- animation 3 -->
+                <div id="animation-frame-3" class="animation-frame" hidden>
+                  <div id="animation-root">
+                    <div id="person-checked"></div>
+                    <div id="rocket"></div>
+                  </div>
+                </div>
+
+                <!-- footer -->
+                <div class="d-flex justify-content-around mt-5">
+                  <img
+                    alt="RSA"
+                    src="public/images/RSA.png"
+                    style="height: 20px;"
+                  />
+                  <span class="fw-light">
+                    ©2015-2023 RSA Security LLC
+                  </span>
+                </div>
+
+              </div><!-- card body -->
+            </div><!-- card -->
+          </div><!-- flex box -->
+        </div><!-- column -->
+      </div><!-- row -->
+    </div><!-- container -->
+  </body>
+
+  <script type="text/javascript">
+    const ANIMATION_TIMEOUT = Number('5000');
+    const animationFrame1 = document.getElementById('animation-frame-1');
+    const animationFrame2 = document.getElementById('animation-frame-2');
+    const animationFrame3 = document.getElementById('animation-frame-3');
+    const formRoot = document.getElementById('form-root');
+    const instructions = document.getElementById('instructions');
+
+    // canvas animation
+    const CANVAS_BLUE = String('#67b7e2');
+    const CANVAS_RED = String('#be3a34');
+    const CANVAS_WHITE = String('#ffffff');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const fontSize = Number('20');
+    const characters = String('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}',);
+    const matrix = Array.from(characters);
+    let columns = [];
+    let canvasInterval = null;
+
+    // onclick
+    function handleClick() {
+
+      // animation stage 1 (css)
+      animationFrame1.hidden = Boolean(false);
+      formRoot.hidden = Boolean(true);
+      instructions.hidden = Boolean(true);
+
+      // animation stage 2 (WebGL + javascript)
+      setTimeout(() => {
+        animationFrame1.hidden = Boolean(true);
+        animationFrame2.hidden = Boolean(false);
+        initializeCanvas();
+        canvasInterval = setInterval(drawCrypto, 50);
+      }, ANIMATION_TIMEOUT);
+
+      // animation stage 3 (css)
+      setTimeout(() => {
+        animationFrame2.hidden = Boolean(true);
+        animationFrame3.hidden = Boolean(false);
+        clearInterval(canvasInterval);
+      }, ANIMATION_TIMEOUT * 2);
+    };
+
+
+    // cryptographic animation
+    function initializeCanvas() {
+      canvas.height = Number(canvas.clientHeight * window.devicePixelRatio);
+      canvas.width = Number(canvas.clientWidth * window.devicePixelRatio);
+      context.font = String(`${fontSize}px arial`);
+      const columnCount = Number(Math.ceil(canvas.width / fontSize));
+      columns = Array(columnCount)
+        .fill()
+        .map(() => {
+          return {
+            isFirstPassDone: Boolean(false),
+            isRowLocked: Boolean(false),
+            lastCharacter: String(matrix[0]),
+            row: Number('0'),
+          };
+        });
+    }
+    function drawCrypto() {
+      // darken canvas with each pass
+      context.fillStyle = String('rgb(255, 255, 255, 0.1)');
+      context.fillRect(0, 0, canvas.width, canvas.height);
+
+      // iterate columns
+      for (let i = 0; i < columns.length; i++) {
+
+        // get the character to draw
+        const lastCharacter = String(columns[i].lastCharacter);
+        const newCharacter = String(
+          matrix[Math.floor(Math.random() * matrix.length)],
+        );
+
+        // set offsets
+        const xOffset = Number(i * fontSize);
+        const yOffset = Number(columns[i].row * fontSize);
+        const yOffsetMinus1 = Number((columns[i].row - 1) * fontSize);
+        const yOffsetMinus30 = Number((columns[i].row - 30) * fontSize);
+        const isOffscreen = Boolean(yOffset > Number(canvas.height));
+
+        // maintain character if row is locked
+        if(columns[i].isRowLocked) {
+          context.fillStyle = CANVAS_BLUE;
+          context.fillText(lastCharacter, xOffset, yOffsetMinus1);
+          continue;
+        }
+
+        // draw new letter white
+        context.fillStyle = CANVAS_WHITE;
+        context.fillText(newCharacter, xOffset, yOffset);
+
+        // set previous letter red
+        context.fillStyle = CANVAS_RED;
+        context.fillText(lastCharacter, xOffset, yOffsetMinus1);
+
+        // lock row blue 5% chance
+        if (!isOffscreen && Math.random() < Number('0.05')) {
+          context.fillStyle = CANVAS_BLUE;
+          context.fillText(lastCharacter, xOffset, yOffsetMinus1);
+          columns[i].isRowLocked = Boolean(true);
+        }
+
+        // trail reset to black
+        if (columns[i].isFirstPassDone) {
+          context.fillStyle = CANVAS_WHITE;
+          context.fillRect(xOffset, yOffsetMinus30, fontSize, fontSize);
+        }
+
+        // reset row to top - 10% chance
+        if (isOffscreen && Math.random() < Number('0.1')) {
+          columns[i].isFirstPassDone = Boolean(true);
+          columns[i].row = Number('0');
+        }
+
+        // progress upward
+        else {
+          columns[i].row++;
+        }
+
+        // track the letter drawn
+        columns[i].lastCharacter = newCharacter;
+      }
+    }
+  </script>
+</html>

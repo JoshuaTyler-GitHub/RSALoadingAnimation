@@ -1,0 +1,289 @@
+.animation-frame {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.5;
+  width: 250px;
+  height: 200px;
+  transition: all 1s ease-in-out;
+}
+
+#animation-root {
+  left: 0px;
+  position: absolute;
+  top: 0px;
+}
+
+#building {
+  background-image: url('../images/buildings.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  left: 300px;
+  position: absolute;
+  top: 150px;
+  width: 50px;
+}
+
+#cloud {
+  background-image: url('../images/cloud.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  left: 300px;
+  position: absolute;
+  top: 230px;
+  width: 50px;
+}
+
+.channel {
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: channel;
+  background-image: url('../images/0-circle.svg');
+  background-repeat: repeat-x;
+}
+@keyframes channel {
+  10% { background-image: url('../images/1-circle.svg'); }
+  30% { background-image: url('../images/0-circle.svg'); }
+  50% { background-image: url('../images/1-circle.svg'); }
+  70% { background-image: url('../images/0-circle.svg'); }
+  90% { background-image: url('../images/1-circle.svg'); }
+  100% {
+    background-position: 100%;
+    background-image: url('../images/0-circle.svg');
+  }
+}
+
+#channel1 {
+  height: 15px;
+  left: 90px;
+  position: absolute;
+  transform: rotate(-33deg);
+  top: 215px;
+  width: 105px;
+}
+
+#channel2 {
+  background-image: url('../images/0-circle.svg');
+  background-repeat: repeat-x;
+  height: 15px;
+  left: 100px;
+  position: absolute;
+  top: 250px;
+  width: 85px;
+}
+
+#channel3 {
+  background-image: url('../images/0-circle.svg');
+  background-repeat: repeat-x;
+  height: 15px;
+  left: 90px;
+  position: absolute;
+  transform: rotate(33deg);
+  top: 280px;
+  width: 110px;
+}
+
+#channel4 {
+  background-image: url('../images/0-circle.svg');
+  background-repeat: repeat-x;
+  height: 15px;
+  left: 215px;
+  position: absolute;
+  top: 175px;
+  width: 85px;
+}
+
+#channel5 {
+  background-image: url('../images/0-circle.svg');
+  background-repeat: repeat-x;
+  height: 15px;
+  left: 215px;
+  position: absolute;
+  top: 250px;
+  width: 85px;
+}
+
+#channel6 {
+  background-image: url('../images/0-circle.svg');
+  background-repeat: repeat-x;
+  height: 15px;
+  left: 215px;
+  position: absolute;
+  top: 325px;
+  width: 85px;
+}
+
+#lock1 {
+  background-image: url('../images/lock-fill.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  left: 175px;
+  position: absolute;
+  top: 150px;
+  width: 50px;
+}
+
+#lock2 {
+  background-image: url('../images/lock-fill.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  left: 175px;
+  position: absolute;
+  top: 225px;
+  width: 50px;
+}
+
+#lock3 {
+  background-image: url('../images/lock-fill.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  left: 175px;
+  position: absolute;
+  top: 300px;
+  width: 50px;
+}
+
+#person {
+  background-image: url('../images/person-bounding-box.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  left: 50px;
+  position: absolute;
+  top: 230px;
+  width: 50px;
+}
+
+#person-checked {
+  background-image: url('../images/person-check-fill.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  left: 125px;
+  position: absolute;
+  top: 230px;
+  width: 50px;
+}
+
+#rocket {
+  background-image: url('../images/rocket-takeoff.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  left: 225px;
+  position: absolute;
+  top: 230px;
+  width: 50px;
+}
+
+#safe {
+  background-image: url('../images/safe2.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  left: 300px;
+  position: absolute;
+  top: 300px;
+  width: 50px;
+}
+
+.nagerie {
+  animation-delay: 3s;
+  animation-duration: 2s;
+  animation-name: nagerie;
+  animation-fill-mode: forwards;
+  color: #757575;
+  font-size: 2rem;
+  left: -30px;
+  opacity: 0%;
+  position: absolute;
+  top: 52.5px;
+}
+@keyframes nagerie {
+  100% {
+    left: 77.5px;
+    opacity: 100%;
+  }
+}
+
+.wi {
+  animation-delay: 3s;
+  animation-duration: 2s;
+  animation-name: wi;
+  animation-fill-mode: forwards;
+  color: #757575;
+  font-size: 2rem;
+  left: 75px;
+  opacity: 0%;
+  position: absolute;
+  top: 97.5px;
+}
+@keyframes wi {
+  100% {
+    left: 40px;
+    opacity: 100%;
+  }
+}
+
+.ki {
+  animation-delay: 2s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: ki;
+  color: #2f4858;
+  right: 45px;
+  position: absolute;
+  top: 60px;
+}
+@keyframes ki {
+  100% {
+    right: 85px;
+    top: 80px;
+  }
+}
+
+.pedia {
+  animation-delay: 3s;
+  animation-duration: 2s;
+  animation-name: pedia;
+  animation-fill-mode: forwards;
+  color: #757575;
+  font-size: 2rem;
+  left: 30px;
+  opacity: 0%;
+  position: absolute;
+  top: 97.5px;
+}
+@keyframes pedia {
+  100% {
+    left: 105px;
+    opacity: 100%;
+  }
+}
+
+.earth {
+  animation-delay: 6s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: earth;
+  background: #4ea5d9;
+  border-radius: 50%;
+  height: 100px;
+  left: 50px;
+  opacity: 0%;
+  position: absolute;
+  top: 30vh;
+  width: 100px;
+}
+@keyframes earth {
+  100% {
+    opacity: 100%;
+  }
+}
